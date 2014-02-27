@@ -211,11 +211,11 @@ class ListBulker(BaseBulker):
 
 def _is_bulk_item_ok(item):
     if "create" in item:
-        return "ok" in item["create"]
+        return "error" not in item["create"]
     if "index" in item:
-        return "ok" in item["index"]
+        return "error" not in item["index"]
     elif "delete" in item:
-        return "ok" in item["delete"]
+        return "error" not in item["delete"]
     else:
         # unknown response type; be conservative
         return False
